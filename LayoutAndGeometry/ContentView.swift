@@ -18,27 +18,11 @@ extension VerticalAlignment {
 
 struct ContentView: View {
     var body: some View {
-        HStack(alignment: .midAccountAndName) {
-            VStack {
-                Text("First line of 1st stack.")
-                Text("@patgd")
-                    .alignmentGuide(.midAccountAndName) { d in d[VerticalAlignment.center] }
-                Image("buttercup")
-                    .resizable()
-                    .frame(width: 64, height: 64)
-                Text("Final line of 1st stack.")
-            }
-
-            VStack {
-                Text("First line of 2nd stack.")
-                Text("Full name:")
-                Text("Trick Grey")
-                    .alignmentGuide(.midAccountAndName) { d in d[VerticalAlignment.center] }
-                    .font(.largeTitle)
-                Text("Final line of 2nd stack.")
-            }
-        }
-        .frame(width: 800, height: 800)
+        Text("Hello, world!")
+//            .background(.red)
+            .offset(x: 100, y: 100)
+            .background(.red)
+            .frame(width: 500, height: 500)
     }
 }
 

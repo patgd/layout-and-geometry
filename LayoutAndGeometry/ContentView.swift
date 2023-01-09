@@ -7,22 +7,41 @@
 
 import SwiftUI
 
-extension VerticalAlignment {
-    enum MidAccountAndName: AlignmentID {
-        static func defaultValue(in d: ViewDimensions) -> CGFloat {
-            d[.top]
+struct OuterView: View {
+    var body: some View {
+        VStack {
+            Text("Top")
+            InnerView()
+                .background(.green)
+            Text("Bottom")
         }
     }
-    static let midAccountAndName = VerticalAlignment(MidAccountAndName.self)
+}
+
+struct InnerView: View {
+    var body: some View {
+        HStack {
+            Text("Left")
+            GeometryReader { geo in
+                Text("Center")
+                    .background(.blue)
+                    .onTapGesture {
+                        print("Global center: \(geo.frame(in: .global).midX) x \(geo.frame(in: .global).midY)")
+                        print("Custom center: \(geo.frame(in: .named("Custom")).midX) x \(geo.frame(in: .named("Custom")).midY)")
+                        print("Local center: \(geo.frame(in: .local).midX) x \(geo.frame(in: .local).midY)")
+                    }
+            }
+            .background(.orange)
+            Text("Right")
+        }
+    }
 }
 
 struct ContentView: View {
     var body: some View {
-        Text("Hello, world!")
-//            .background(.red)
-            .offset(x: 100, y: 100)
+        OuterView()
             .background(.red)
-            .frame(width: 500, height: 500)
+            .coordinateSpace(name: "Custom")
     }
 }
 

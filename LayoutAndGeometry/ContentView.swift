@@ -17,7 +17,7 @@ struct ContentView: View {
                     GeometryReader { geo in
                         Text("Row #\(index)")
                             .font(.title)
-                            .frame(maxWidth: .infinity)
+                            .frame(maxWidth: .infinity, minHeight: max(geo.size.height * 0.5, geo.size.height * geo.frame(in: .global).minY / fullView.size.height))
                             .background(colors[index % 7])
                             .rotation3DEffect(.degrees(geo.frame(in: .global).minY - fullView.size.height / 2) / 5, axis: (x: 0, y: 1, z: 0))
                             .opacity(geo.frame(in: .global).minY < 200 ? geo.frame(in: .global).minY / 200 - 0.15 : 1)
